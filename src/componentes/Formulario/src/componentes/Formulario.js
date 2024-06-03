@@ -8,8 +8,6 @@ export default {
       formData: this.getInicialData(),
       formDirty: this.getInicialData(),
       clientes: [
-        { nombre: 'Pedro', documento: '44830154', montoAPagar: 32, pagoRealizado: 12},
-        { nombre: 'juan', documento: '44343015', montoAPagar: 254, pagoRealizado: 34},
       ],
       datos: []
     }
@@ -29,26 +27,32 @@ export default {
       }
     },
     validarBotonEnvio() {
-      return (
-        !this.formData.nombre || 
-        this.formData.nombre.length < 3 || 
-        this.formData.nombre.length > 10 
-      ) || 
+      return !this.formData.nombre || 
       !this.formData.documento || 
       !this.formData.montoAPagar || 
       !this.formData.pagoRealizado
     },
     enviar() {
-      const datos = {...this.formData}
-      console.log(datos)
+      const cliente = {...this.formData}
+      cliente.fecha = new Date().toLocaleString()
+
 
       this.formData = this.getInicialData()
       this.formDirty = this.getInicialData()
     },
     agregarCliente(nom, doc, montoAPag, pagoRealiz) {
-      const cliente = { nombre: nom, documento: doc, montoAPagar: montoAPag, pagoRealizado: pagoRealiz}
-
+      const cliente = { nombre: nom, documento: doc, montoAPagar: montoAPag, pagoRealizado: pagoRealiz, deuda: montoAPag-pagoRealiz, fecha:  new Date().toLocaleString()}
       this.clientes.push(cliente)
+    },
+    analizarSaldo(gasto) {
+      let dif = gasto.pagoRealizado - gasto.montoAPagar
+      let color = '#080'
+      if(dif > 0) color = '#00F'
+      if(dif < 0) color = '#F00'
+      return {
+        valor : dif,
+        color
+      }
     },
   }
 }

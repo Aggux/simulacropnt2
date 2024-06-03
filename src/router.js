@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 import Formulario from './componentes/Formulario/index.vue'
+import ResultadoChoice from './componentes/ResultadoChoice.vue'
 
 
 const routes = [
@@ -8,6 +9,7 @@ const routes = [
 
     { path: '/formulario', component: Formulario },
     { path: '/formulario/:id', component: Formulario },
+    { path: '/resultadoChoice', component: ResultadoChoice },
     
 
     { path: '/:pathmatch(.*)*', redirect: '/formulario' },

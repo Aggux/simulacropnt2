@@ -10,6 +10,9 @@
           <li class="nav-item">
             <RouterLink class="nav-link" to="/formulario">Formulario</RouterLink>
           </li>
+          <li class="nav-item">
+            <RouterLink class="nav-link" to="/resultadoChoice">Resultados Choice</RouterLink>
+          </li>
         </ul>
       </div>
     </nav>
